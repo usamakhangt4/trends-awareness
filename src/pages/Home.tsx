@@ -1,18 +1,33 @@
 import {
+  IonCheckbox,
   IonContent,
   IonHeader,
+  IonItem,
+  IonLabel,
   IonPage,
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
 import "./Home.css";
 
-const Home: React.FC = () => {
+interface HomeProps {
+  isLoggedIn: boolean;
+  setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Home = (props: HomeProps) => {
+  const {isLoggedIn, setIsLoggedIn} = props;
   return (
     <IonPage>
-      <IonHeader>
+      <IonHeader class="ion-flex">
         <IonToolbar>
           <IonTitle>Trend Awareness</IonTitle>
+          <IonItem onClick={() => setIsLoggedIn(!isLoggedIn)}>
+            <IonCheckbox slot="start"></IonCheckbox>
+            <IonLabel>
+              {isLoggedIn ? "User Logged In" : "User Logged Out"}
+            </IonLabel>
+          </IonItem>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
