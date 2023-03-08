@@ -8,6 +8,7 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
+import TrendsForm from "../components/TrendsForm/trends-form";
 import "./Home.css";
 
 interface HomeProps {
@@ -36,6 +37,7 @@ const Home = (props: HomeProps) => {
             <IonTitle size="large">Blank</IonTitle>
           </IonToolbar>
         </IonHeader>
+        <TrendsForm />
       </IonContent>
     </IonPage>
   );
