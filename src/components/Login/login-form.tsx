@@ -11,9 +11,10 @@ import {eye, eyeOff} from "ionicons/icons";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {useState} from "react";
 import {Storage} from "@ionic/storage";
+import {useLogin} from "../../services/api/auth";
 
 interface Inputs {
-  username: string;
+  email: string;
   password: string;
 }
 
@@ -27,21 +28,33 @@ const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const storage = new Storage();
 
+  const {isLoading, isError, handleLogin, isSuccess} = useLogin();
   const onSubmit: SubmitHandler<Inputs> = async (data: any) => {
     console.log(data);
-    storage.create();
-    storage.set("isLoggedIn", "true");
-    const temp = await storage.get("isLoggedIn");
-    console.log(typeof temp);
+
+    handleLogin(data);
+    if (isSuccess) {
+      storage.create();
+      storage.set("isLoggedIn", true);
+    }
   };
 
   return (
     <>
-      <IonItem fill="solid">
-        <IonLabel position="floating">Username</IonLabel>
-        <IonInput type="text" {...register("username", {required: true})} />
-        {errors.username && (
-          <IonText color="danger">Username is required</IonText>
+      <IonItem>
+        <IonLabel position="floating">Email</IonLabel>
+        <IonInput
+          type="email"
+          {...register("email", {
+            required: true,
+            pattern: /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
+          })}
+        />
+        {errors.email?.type === "required" && (
+          <IonText color="danger">Email is required</IonText>
+        )}
+        {errors.email?.type === "pattern" && (
+          <IonText color="danger">Invalid email address</IonText>
         )}
       </IonItem>
       <IonItem>

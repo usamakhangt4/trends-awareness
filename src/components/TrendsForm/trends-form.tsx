@@ -15,7 +15,6 @@ interface Inputs {
   untill: string;
   words: string;
   hashtag: string;
-  fromAccount: string;
   limit: number;
   interval: number;
 }
@@ -57,16 +56,6 @@ const TrendsForm = () => {
           <IonInput type="text" {...register("hashtag", {required: true})} />
           {errors.hashtag && (
             <IonText color="danger">Hashtag is required</IonText>
-          )}
-        </IonItem>
-        <IonItem fill="solid">
-          <IonLabel position="floating">From Acount</IonLabel>
-          <IonInput
-            type="text"
-            {...register("fromAccount", {required: true})}
-          />
-          {errors.fromAccount && (
-            <IonText color="danger">From Acount is required</IonText>
           )}
         </IonItem>
         <IonItem fill="solid">

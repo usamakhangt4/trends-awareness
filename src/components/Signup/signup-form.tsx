@@ -10,6 +10,8 @@ import {
 import {SubmitHandler, useForm} from "react-hook-form";
 import {eye, eyeOff} from "ionicons/icons";
 import {useState} from "react";
+import {useRegistration} from "../../services/api/auth";
+import {Storage} from "@ionic/storage";
 
 interface Inputs {
   firstName: string;
@@ -25,13 +27,21 @@ const SignupForm = () => {
     handleSubmit,
     formState: {errors},
     watch,
-  } = useForm<Inputs>();
+  } = useForm<Inputs>({mode: "all"});
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const storage = new Storage();
 
+  const {handleRegistration, isError, isLoading, isSuccess} = useRegistration();
   const onSubmit: SubmitHandler<Inputs> = (data: Inputs) => {
     console.log(data);
+    handleRegistration(data);
+    if (isSuccess) {
+      storage.create();
+      storage.set("isLoggedIn", true);
+    }
+    console.log("isLoading:", isLoading);
   };
 
   const password = watch("password");

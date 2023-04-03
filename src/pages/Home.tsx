@@ -1,4 +1,5 @@
 import {
+  IonButton,
   IonCheckbox,
   IonContent,
   IonHeader,
@@ -8,6 +9,7 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
+import {Storage} from "@ionic/storage";
 import TrendsForm from "../components/TrendsForm/trends-form";
 import "./Home.css";
 
@@ -18,16 +20,25 @@ interface HomeProps {
 
 const Home = (props: HomeProps) => {
   const {isLoggedIn, setIsLoggedIn} = props;
+  const storage = new Storage();
+
+  const handleLogout = () => {
+    storage.create();
+    storage.set("isLoggedIn", false);
+    console.log("loggedOUt");
+  };
   return (
     <IonPage>
       <IonHeader class="ion-flex">
-        <IonToolbar>
+        <IonToolbar class="ion-flex">
           <IonTitle>Trend Awareness</IonTitle>
-          <IonItem onClick={() => setIsLoggedIn(!isLoggedIn)}>
-            <IonCheckbox slot="start"></IonCheckbox>
-            <IonLabel>
-              {isLoggedIn ? "User Logged In" : "User Logged Out"}
-            </IonLabel>
+          <IonItem>
+            <IonButton
+              class="ion-margin-top"
+              color={"danger"}
+              onClick={handleLogout}>
+              Logout
+            </IonButton>
           </IonItem>
         </IonToolbar>
       </IonHeader>

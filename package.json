@@ -1,4 +1,5 @@
 {
+  "proxy": "http://127.0.0.1:5000/",
   "name": "temp",
   "version": "0.0.1",
   "private": true,
@@ -26,6 +27,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.1",
+    "react-query": "^3.39.3",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "sass": "^1.58.0",

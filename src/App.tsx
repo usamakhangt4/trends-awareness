@@ -29,14 +29,26 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import AuthenticatedApp from "./authenticated-app";
 import UnAuthenticatedApp from "./un-authenticated-app";
+import {Storage} from "@ionic/storage";
 
 setupIonicReact();
 
 const App: React.FC = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const storage = new Storage();
+  const initializeStorage = async () => {
+    await storage.create();
+    const temp = await storage.get("isLoggedIn");
+    setIsLoggedIn(Boolean(temp));
+  };
+
+  useEffect(() => {
+    initializeStorage();
+  }, []);
 
   return (
     <IonApp>
@@ -63,5 +75,4 @@ const App: React.FC = () => {
     </IonApp>
   );
 };
-
 export default App;
