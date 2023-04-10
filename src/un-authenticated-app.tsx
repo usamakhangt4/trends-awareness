@@ -15,14 +15,23 @@ import LoginForm from "./components/Login/login-form";
 import SignupForm from "./components/Signup/signup-form";
 import "./styles/un-authenticated-app.scss";
 
-const UnAuthenticatedApp = () => {
+interface UnAuthenticatedAppTypes {
+  setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const UnAuthenticatedApp = (props: UnAuthenticatedAppTypes) => {
+  const {setIsLoggedIn} = props;
   const [isSignUpPage, setIsSignUpPage] = useState(false);
   return (
     <IonContent>
       <IonCard class="ion-padding">
         <IonCardTitle>{isSignUpPage ? "SignUp" : "Login"}</IonCardTitle>
         <IonCardContent>
-          {isSignUpPage ? <SignupForm /> : <LoginForm />}
+          {isSignUpPage ? (
+            <SignupForm setIsLoggedIn={setIsLoggedIn} />
+          ) : (
+            <LoginForm setIsLoggedIn={setIsLoggedIn} />
+          )}
         </IonCardContent>
         <IonCardSubtitle class="row-flex-center" style={{gap: 10}}>
           <IonText color="medium">

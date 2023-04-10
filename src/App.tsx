@@ -48,30 +48,18 @@ const App: React.FC = () => {
 
   useEffect(() => {
     initializeStorage();
-  }, []);
+  }, [storage]);
+  console.log({isLoggedIn});
 
   return (
     <IonApp>
       <IonPage>
         {isLoggedIn ? (
-          <AuthenticatedApp
-            isLoggedIn={isLoggedIn}
-            setIsLoggedIn={setIsLoggedIn}
-          />
+          <AuthenticatedApp setIsLoggedIn={setIsLoggedIn} />
         ) : (
-          <UnAuthenticatedApp />
+          <UnAuthenticatedApp setIsLoggedIn={setIsLoggedIn} />
         )}
       </IonPage>
-      {/* <IonReactRouter>
-      <IonRouterOutlet>
-        <Route exact path="/home">
-          <Home />
-        </Route>
-        <Route exact path="/">
-          <Redirect to="/home" />
-        </Route>
-      </IonRouterOutlet>
-    </IonReactRouter> */}
     </IonApp>
   );
 };

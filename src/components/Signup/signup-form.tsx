@@ -21,7 +21,12 @@ interface Inputs {
   confirmPassword: string;
 }
 
-const SignupForm = () => {
+interface SignupFormTypes {
+  setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const SignupForm = (props: SignupFormTypes) => {
+  const {setIsLoggedIn} = props;
   const {
     register,
     handleSubmit,
@@ -31,21 +36,23 @@ const SignupForm = () => {
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const storage = new Storage();
+
+  // Create a new instance of Storage
+  const storage: Storage = new Storage();
 
   const {handleRegistration, isError, isLoading, isSuccess} = useRegistration();
-  const onSubmit: SubmitHandler<Inputs> = (data: Inputs) => {
+  const onSubmit: SubmitHandler<Inputs> = async (data: Inputs) => {
     console.log(data);
     handleRegistration(data);
     if (isSuccess) {
-      storage.create();
-      storage.set("isLoggedIn", true);
+      // const storage: Storage = await storage.create();
+      await storage.set("isLoggedIn", true);
+      setIsLoggedIn(true);
     }
     console.log("isLoading:", isLoading);
   };
 
   const password = watch("password");
-
   return (
     <>
       <IonList>

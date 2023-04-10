@@ -9,7 +9,7 @@ import {
 } from "@ionic/react";
 import {eye, eyeOff} from "ionicons/icons";
 import {SubmitHandler, useForm} from "react-hook-form";
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import {Storage} from "@ionic/storage";
 import {useLogin} from "../../services/api/auth";
 
@@ -17,8 +17,12 @@ interface Inputs {
   email: string;
   password: string;
 }
+interface LoginFormTypes {
+  setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-const LoginForm = () => {
+const LoginForm = (props: LoginFormTypes) => {
+  const {setIsLoggedIn} = props;
   const {
     register,
     handleSubmit,
@@ -26,18 +30,28 @@ const LoginForm = () => {
   } = useForm<Inputs>();
 
   const [showPassword, setShowPassword] = useState(false);
-  const storage = new Storage();
+  const [storage, setStorage] = useState<Storage | null>(null);
 
   const {isLoading, isError, handleLogin, isSuccess} = useLogin();
   const onSubmit: SubmitHandler<Inputs> = async (data: any) => {
-    console.log(data);
-
     handleLogin(data);
-    if (isSuccess) {
-      storage.create();
-      storage.set("isLoggedIn", true);
-    }
   };
+
+  useEffect(() => {
+    const initializeStorage = async () => {
+      const storage = new Storage();
+      await storage.create();
+      setStorage(storage);
+    };
+    initializeStorage();
+  }, []);
+
+  useEffect(() => {
+    if (isSuccess && storage) {
+      storage.set("isLoggedIn", true);
+      setIsLoggedIn(true);
+    }
+  }, [isSuccess, storage]);
 
   return (
     <>
