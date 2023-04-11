@@ -9,15 +9,23 @@ import {
   IonText,
 } from "@ionic/react";
 import {SubmitHandler, useForm} from "react-hook-form";
+import {useTweetsScraping} from "../../services/api/scrape";
 
 interface Inputs {
   since: string;
-  untill: string;
+  until: string;
   words: string;
-  hashtag: string;
   limit: number;
   interval: number;
 }
+
+const formatDate = (dateString: string) => {
+  const date = new Date(dateString);
+  const year = date.getFullYear();
+  const month = ("0" + (date.getMonth() + 1)).slice(-2);
+  const day = ("0" + date.getDate()).slice(-2);
+  return `${year}-${month}-${day}`;
+};
 
 const TrendsForm = () => {
   const {
@@ -26,8 +34,27 @@ const TrendsForm = () => {
     formState: {errors},
   } = useForm<Inputs>();
 
+  const {handleScraping, isError, isLoading, isSuccess} = useTweetsScraping();
+
   const onSubmit: SubmitHandler<Inputs> = async (data: any) => {
     console.log(data);
+
+    // Convert dates to the desired format
+    const formattedData = {
+      ...data,
+      since: formatDate(data.since),
+      until: formatDate(data.until),
+    };
+
+    handleScraping(formattedData);
+
+    if (isLoading) {
+      console.log("success");
+    }
+
+    if (isSuccess) {
+      console.log("success");
+    }
   };
 
   return (
@@ -36,27 +63,26 @@ const TrendsForm = () => {
       <IonCardContent>
         <IonItem fill="solid">
           <IonLabel position="stacked">Since</IonLabel>
-          <IonInput type="date" {...register("since", {required: true})} />
+          <IonInput
+            type="date"
+            pattern="\d{4}-\d{2}-\d{2}"
+            {...register("since", {required: true})}
+          />
           {errors.since && <IonText color="danger">Since is required</IonText>}
         </IonItem>
         <IonItem fill="solid">
-          <IonLabel position="stacked">Untill</IonLabel>
-          <IonInput type="date" {...register("untill", {required: true})} />
-          {errors.untill && (
-            <IonText color="danger">Untill is required</IonText>
-          )}
+          <IonLabel position="stacked">until</IonLabel>
+          <IonInput
+            type="date"
+            pattern="\d{4}-\d{2}-\d{2}"
+            {...register("until", {required: true})}
+          />
+          {errors.until && <IonText color="danger">until is required</IonText>}
         </IonItem>
         <IonItem fill="solid">
           <IonLabel position="floating">Words</IonLabel>
           <IonInput type="text" {...register("words", {required: true})} />
           {errors.words && <IonText color="danger">Words is required</IonText>}
-        </IonItem>
-        <IonItem fill="solid">
-          <IonLabel position="floating">Hashtag</IonLabel>
-          <IonInput type="text" {...register("hashtag", {required: true})} />
-          {errors.hashtag && (
-            <IonText color="danger">Hashtag is required</IonText>
-          )}
         </IonItem>
         <IonItem fill="solid">
           <IonLabel position="floating">Limit</IonLabel>
