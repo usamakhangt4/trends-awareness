@@ -35,6 +35,7 @@ export const useTweetsScraping = () => {
     isLoading,
     isSuccess,
     isError,
+    status,
   } = useMutation<scrapeResponse, Error, scrapeTweets>(scrapeTweets);
 
   const handleScraping = async (formData: scrapeTweets) => {
@@ -48,5 +49,5 @@ export const useTweetsScraping = () => {
     }
   };
 
-  return {handleScraping, isLoading, isSuccess, isError};
+  return {handleScraping, isLoading, isSuccess, isError, status};
 };

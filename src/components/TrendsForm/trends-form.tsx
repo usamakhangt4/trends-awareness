@@ -34,7 +34,8 @@ const TrendsForm = () => {
     formState: {errors},
   } = useForm<Inputs>();
 
-  const {handleScraping, isError, isLoading, isSuccess} = useTweetsScraping();
+  const {handleScraping, isError, isLoading, isSuccess, status} =
+    useTweetsScraping();
 
   const onSubmit: SubmitHandler<Inputs> = async (data: any) => {
     console.log(data);
@@ -47,6 +48,7 @@ const TrendsForm = () => {
     };
 
     handleScraping(formattedData);
+    console.log({isError, isSuccess, isLoading, status});
 
     if (isLoading) {
       console.log("success");
