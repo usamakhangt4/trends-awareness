@@ -10,8 +10,8 @@ import {
 import {eye, eyeOff} from "ionicons/icons";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {useState, useEffect} from "react";
-import {Storage} from "@ionic/storage";
 import {useLogin} from "../../services/api/auth";
+import {storage} from "../../storage";
 
 interface Inputs {
   email: string;
@@ -30,28 +30,19 @@ const LoginForm = (props: LoginFormTypes) => {
   } = useForm<Inputs>();
 
   const [showPassword, setShowPassword] = useState(false);
-  const [storage, setStorage] = useState<Storage | null>(null);
 
-  const {isLoading, isError, handleLogin, isSuccess} = useLogin();
+  const {accountLogin} = useLogin();
+
   const onSubmit: SubmitHandler<Inputs> = async (data: any) => {
-    handleLogin(data);
+    accountLogin(data, {
+      onSuccess: async () => {
+        storage.set("isLoggedIn", true);
+        console.log("reached");
+        setIsLoggedIn(true);
+        console.log(storage.get("isLoggedIn"));
+      },
+    });
   };
-
-  useEffect(() => {
-    const initializeStorage = async () => {
-      const storage = new Storage();
-      await storage.create();
-      setStorage(storage);
-    };
-    initializeStorage();
-  }, []);
-
-  useEffect(() => {
-    if (isSuccess && storage) {
-      storage.set("isLoggedIn", true);
-      setIsLoggedIn(true);
-    }
-  }, [isSuccess, storage]);
 
   return (
     <>

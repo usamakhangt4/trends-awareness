@@ -32,24 +32,24 @@ import "./theme/variables.css";
 import {useEffect, useState} from "react";
 import AuthenticatedApp from "./authenticated-app";
 import UnAuthenticatedApp from "./un-authenticated-app";
-import {Storage} from "@ionic/storage";
+import {storage} from "./storage";
 
 setupIonicReact();
 
 const App: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const storage = new Storage();
-  const initializeStorage = async () => {
-    await storage.create();
-    const temp = await storage.get("isLoggedIn");
-    setIsLoggedIn(Boolean(temp));
-  };
+  const [isAppLoading, setIsAppLoading] = useState(false);
 
   useEffect(() => {
-    initializeStorage();
+    storage.get("isLoggedIn").then((value) => {
+      setIsLoggedIn(!!value);
+    });
+    storage.get("isAppLoading").then((value) => {
+      setIsAppLoading(!!value);
+    });
   }, [storage]);
   console.log({isLoggedIn});
+  console.log({isAppLoading});
 
   return (
     <IonApp>

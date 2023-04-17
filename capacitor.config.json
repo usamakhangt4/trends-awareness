@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.twitter.scrapping',
-  appName: 'twitter-scrapping',
+  appId: 'io.ionic.starter',
+  appName: 'temp',
   webDir: 'build',
   bundledWebRuntime: false
 };

@@ -1523,6 +1523,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@capacitor-community/sqlite@npm:^4.6.3":
+  version: 4.6.3
+  resolution: "@capacitor-community/sqlite@npm:4.6.3"
+  dependencies:
+    jeep-sqlite: ^2.3.1
+  peerDependencies:
+    "@capacitor/core": ^4.0.0
+  checksum: 5bcaef3051ae83edf99074161011e80b49ddb25ca3d7b68e2b406fc908da6464937c3cdd343d59b4ffe041056eee3c0adcdeb7e6fbc3f51af79c7088e5356b8f
+  languageName: node
+  linkType: hard
+
 "@capacitor/android@npm:4.6.3":
   version: 4.6.3
   resolution: "@capacitor/android@npm:4.6.3"
@@ -1541,9 +1552,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@capacitor/cli@npm:4.6.1":
-  version: 4.6.1
-  resolution: "@capacitor/cli@npm:4.6.1"
+"@capacitor/cli@npm:^4.7.3":
+  version: 4.7.3
+  resolution: "@capacitor/cli@npm:4.7.3"
   dependencies:
     "@ionic/cli-framework-output": ^2.2.5
     "@ionic/utils-fs": ^3.1.6
@@ -1565,7 +1576,7 @@ __metadata:
   bin:
     cap: bin/capacitor
     capacitor: bin/capacitor
-  checksum: 082715e2a2a65a320e45bef3fd8324537d0701acf2185ba29fdb6936d919a787533251d92f8758d1add6ce1e51791cc9bbbd406937624aa743ecf1780f548c24
+  checksum: 07a09decfc465e7bfdec5e8f5436468eea562c7d44a0ed2941354cfb599259ebc8955da6d2ba555dfab87a4eacd6a71b3700828a20d3de118f81b55097290e45
   languageName: node
   linkType: hard
 
@@ -2523,6 +2534,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@stencil/core@npm:^3.2.0":
+  version: 3.2.1
+  resolution: "@stencil/core@npm:3.2.1"
+  bin:
+    stencil: bin/stencil
+  checksum: b7349e0e7551d287264a6052ea0c3246ae6e55c173bffaf7b8db73e16f128ba1bb4e704b7b6d76810a22fc38b9e14daf67d273133f9c435ad327f1a4bd4434b5
+  languageName: node
+  linkType: hard
+
 "@surma/rollup-plugin-off-main-thread@npm:^2.2.3":
   version: 2.2.3
   resolution: "@surma/rollup-plugin-off-main-thread@npm:2.2.3"
@@ -3031,6 +3051,15 @@ __metadata:
   version: 6.9.7
   resolution: "@types/qs@npm:6.9.7"
   checksum: 7fd6f9c25053e9b5bb6bc9f9f76c1d89e6c04f7707a7ba0e44cc01f17ef5284adb82f230f542c2d5557d69407c9a40f0f3515e8319afd14e1e16b5543ac6cdba
+  languageName: node
+  linkType: hard
+
+"@types/ramda@npm:^0.29.0":
+  version: 0.29.0
+  resolution: "@types/ramda@npm:0.29.0"
+  dependencies:
+    types-ramda: ^0.29.1
+  checksum: f133675d7cf0df801de3d9790bc04af76e489179c31f21f6bbd8939dd659cefd878cce77f7abba41b04c6986c25008e3dd55c3250315e5232b5bccac213e5da9
   languageName: node
   linkType: hard
 
@@ -3977,6 +4006,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"axios@npm:^1.3.5":
+  version: 1.3.5
+  resolution: "axios@npm:1.3.5"
+  dependencies:
+    follow-redirects: ^1.15.0
+    form-data: ^4.0.0
+    proxy-from-env: ^1.1.0
+  checksum: 4d6bcf933b1cdff86d4993752aaeeeedc4a7f7a4b1c942847f6884bb13fc6106610ff826b076acf0b08d8ced55dee9344bb9a11f3624c3e70ab1da1a40bb5506
+  languageName: node
+  linkType: hard
+
 "axobject-query@npm:^3.1.1":
   version: 3.1.1
   resolution: "axobject-query@npm:3.1.1"
@@ -4315,6 +4355,13 @@ __metadata:
     rimraf: 3.0.2
     unload: 2.2.0
   checksum: 803794c48dcce7f03aca69797430bd8b1c4cfd70b7de22079cd89567eeffaa126a1db98c7c2d86af8131d9bb41ed367c0fef96dfb446151c927b831572c621fc
+  languageName: node
+  linkType: hard
+
+"browser-fs-access@npm:^0.33.0":
+  version: 0.33.1
+  resolution: "browser-fs-access@npm:0.33.1"
+  checksum: 2fb595c2d28e2da3a5772c0c4da01e8bd4ea2d812693a5ccc8675b59c7658ac82d3e16780e4b7746ca45350b0e873f09597256a524b9e9e80fe67c91bcddffa0
   languageName: node
   linkType: hard
 
@@ -6515,7 +6562,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"follow-redirects@npm:^1.0.0":
+"follow-redirects@npm:^1.0.0, follow-redirects@npm:^1.15.0":
   version: 1.15.2
   resolution: "follow-redirects@npm:1.15.2"
   peerDependenciesMeta:
@@ -6573,6 +6620,17 @@ __metadata:
     combined-stream: ^1.0.8
     mime-types: ^2.1.12
   checksum: b019e8d35c8afc14a2bd8a7a92fa4f525a4726b6d5a9740e8d2623c30e308fbb58dc8469f90415a856698933c8479b01646a9dff33c87cc4e76d72aedbbf860d
+  languageName: node
+  linkType: hard
+
+"form-data@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "form-data@npm:4.0.0"
+  dependencies:
+    asynckit: ^0.4.0
+    combined-stream: ^1.0.8
+    mime-types: ^2.1.12
+  checksum: 01135bf8675f9d5c61ff18e2e2932f719ca4de964e3be90ef4c36aacfc7b9cb2fceb5eca0b7e0190e3383fe51c5b37f4cb80b62ca06a99aaabfcfd6ac7c9328c
   languageName: node
   linkType: hard
 
@@ -7826,6 +7884,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jeep-sqlite@npm:^2.3.1":
+  version: 2.3.3
+  resolution: "jeep-sqlite@npm:2.3.3"
+  dependencies:
+    "@stencil/core": ^3.2.0
+    browser-fs-access: ^0.33.0
+    jszip: ^3.10.1
+    localforage: ^1.10.0
+    sql.js: ^1.8.0
+  checksum: 1493ac9ce1cf024a1a09844efbe68d7a7992aee9213320d9fce879f35cb55ae43f2dfd27ea634c53cd97dd017e7a1ce6788d7b1825c2b05629b7e7c84d7b88fb
+  languageName: node
+  linkType: hard
+
 "jest-changed-files@npm:^27.5.1":
   version: 27.5.1
   resolution: "jest-changed-files@npm:27.5.1"
@@ -8614,6 +8685,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jszip@npm:^3.10.1":
+  version: 3.10.1
+  resolution: "jszip@npm:3.10.1"
+  dependencies:
+    lie: ~3.3.0
+    pako: ~1.0.2
+    readable-stream: ~2.3.6
+    setimmediate: ^1.0.5
+  checksum: abc77bfbe33e691d4d1ac9c74c8851b5761fba6a6986630864f98d876f3fcc2d36817dfc183779f32c00157b5d53a016796677298272a714ae096dfe6b1c8b60
+  languageName: node
+  linkType: hard
+
 "kind-of@npm:^6.0.2":
   version: 6.0.3
   resolution: "kind-of@npm:6.0.3"
@@ -8694,6 +8777,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lie@npm:~3.3.0":
+  version: 3.3.0
+  resolution: "lie@npm:3.3.0"
+  dependencies:
+    immediate: ~3.0.5
+  checksum: 33102302cf19766f97919a6a98d481e01393288b17a6aa1f030a3542031df42736edde8dab29ffdbf90bebeffc48c761eb1d064dc77592ca3ba3556f9fe6d2a8
+  languageName: node
+  linkType: hard
+
 "lilconfig@npm:^2.0.3, lilconfig@npm:^2.0.5, lilconfig@npm:^2.0.6":
   version: 2.0.6
   resolution: "lilconfig@npm:2.0.6"
@@ -8733,7 +8825,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"localforage@npm:^1.9.0":
+"localforage@npm:^1.10.0, localforage@npm:^1.9.0":
   version: 1.10.0
   resolution: "localforage@npm:1.10.0"
   dependencies:
@@ -9670,6 +9762,13 @@ __metadata:
   version: 2.2.0
   resolution: "p-try@npm:2.2.0"
   checksum: f8a8e9a7693659383f06aec604ad5ead237c7a261c18048a6e1b5b85a5f8a067e469aa24f5bc009b991ea3b058a87f5065ef4176793a200d4917349881216cae
+  languageName: node
+  linkType: hard
+
+"pako@npm:~1.0.2":
+  version: 1.0.11
+  resolution: "pako@npm:1.0.11"
+  checksum: 1be2bfa1f807608c7538afa15d6f25baa523c30ec870a3228a89579e474a4d992f4293859524e46d5d87fd30fa17c5edf34dbef0671251d9749820b488660b16
   languageName: node
   linkType: hard
 
@@ -10834,6 +10933,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"proxy-from-env@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "proxy-from-env@npm:1.1.0"
+  checksum: ed7fcc2ba0a33404958e34d95d18638249a68c430e30fcb6c478497d72739ba64ce9810a24f53a7d921d0c065e5b78e3822759800698167256b04659366ca4d4
+  languageName: node
+  linkType: hard
+
 "psl@npm:^1.1.33":
   version: 1.9.0
   resolution: "psl@npm:1.9.0"
@@ -10891,6 +10997,13 @@ __metadata:
   dependencies:
     performance-now: ^2.1.0
   checksum: 50ba284e481c8185dbcf45fc4618ba3aec580bb50c9121385d5698cb6012fe516d2015b1df6dd407a7b7c58d44be8086108236affbce1861edd6b44637c8cd52
+  languageName: node
+  linkType: hard
+
+"ramda@npm:^0.29.0":
+  version: 0.29.0
+  resolution: "ramda@npm:0.29.0"
+  checksum: 9ab26c06eb7545cbb7eebcf75526d6ee2fcaae19e338f165b2bf32772121e7b28192d6664d1ba222ff76188ba26ab307342d66e805dbb02c860560adc4d5dd57
   languageName: node
   linkType: hard
 
@@ -11186,6 +11299,21 @@ __metadata:
     string_decoder: ~1.1.1
     util-deprecate: ~1.0.1
   checksum: e4920cf7549a60f8aaf694d483a0e61b2a878b969d224f89b3bc788b8d920075132c4b55a7494ee944c7b6a9a0eada28a7f6220d80b0312ece70bbf08eeca755
+  languageName: node
+  linkType: hard
+
+"readable-stream@npm:~2.3.6":
+  version: 2.3.8
+  resolution: "readable-stream@npm:2.3.8"
+  dependencies:
+    core-util-is: ~1.0.0
+    inherits: ~2.0.3
+    isarray: ~1.0.0
+    process-nextick-args: ~2.0.0
+    safe-buffer: ~5.1.1
+    string_decoder: ~1.1.1
+    util-deprecate: ~1.0.1
+  checksum: 65645467038704f0c8aaf026a72fbb588a9e2ef7a75cd57a01702ee9db1c4a1e4b03aaad36861a6a0926546a74d174149c8c207527963e0c2d3eee2f37678a42
   languageName: node
   linkType: hard
 
@@ -11789,6 +11917,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"setimmediate@npm:^1.0.5":
+  version: 1.0.5
+  resolution: "setimmediate@npm:1.0.5"
+  checksum: c9a6f2c5b51a2dabdc0247db9c46460152ffc62ee139f3157440bd48e7c59425093f42719ac1d7931f054f153e2d26cf37dfeb8da17a794a58198a2705e527fd
+  languageName: node
+  linkType: hard
+
 "setprototypeof@npm:1.1.0":
   version: 1.1.0
   resolution: "setprototypeof@npm:1.1.0"
@@ -12020,6 +12155,13 @@ __metadata:
   version: 1.0.3
   resolution: "sprintf-js@npm:1.0.3"
   checksum: 19d79aec211f09b99ec3099b5b2ae2f6e9cdefe50bc91ac4c69144b6d3928a640bb6ae5b3def70c2e85a2c3d9f5ec2719921e3a59d3ca3ef4b2fd1a4656a0df3
+  languageName: node
+  linkType: hard
+
+"sql.js@npm:^1.8.0":
+  version: 1.8.0
+  resolution: "sql.js@npm:1.8.0"
+  checksum: 4c16846815664ef95c4dc2ffbbef4cba5236ead0798c9f1fac11f66c194a0ac51862fe26980be55cef8738b12ebe9d12efe71262953773cdcb41fbef034b2320
   languageName: node
   linkType: hard
 
@@ -12439,9 +12581,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "temp@workspace:."
   dependencies:
+    "@capacitor-community/sqlite": ^4.6.3
     "@capacitor/android": 4.6.3
     "@capacitor/app": 4.1.1
-    "@capacitor/cli": 4.6.1
+    "@capacitor/cli": ^4.7.3
     "@capacitor/core": 4.6.1
     "@capacitor/haptics": 4.1.0
     "@capacitor/keyboard": 4.1.0
@@ -12455,12 +12598,15 @@ __metadata:
     "@types/aria-query": ^5.0.1
     "@types/jest": ^26.0.20
     "@types/node": ^12.19.15
+    "@types/ramda": ^0.29.0
     "@types/react": ^18.0.28
     "@types/react-dom": latest
     "@types/react-router": ^5.1.11
     "@types/react-router-dom": ^5.1.7
+    axios: ^1.3.5
     history: ^4.9.0
     ionicons: ^6.0.3
+    ramda: ^0.29.0
     react: ^18.2.0
     react-dom: ^18.2.0
     react-hook-form: ^7.43.1
@@ -12675,6 +12821,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ts-toolbelt@npm:^9.6.0":
+  version: 9.6.0
+  resolution: "ts-toolbelt@npm:9.6.0"
+  checksum: 9f35fd95d895a5d32ea9fd2e532a695b0bae6cbff6832b77292efa188a0ed1ed6e54f63f74a8920390f3d909a7a3adb20a144686372a8e78b420246a9bd3d58a
+  languageName: node
+  linkType: hard
+
 "tsconfig-paths@npm:^3.14.1":
   version: 3.14.1
   resolution: "tsconfig-paths@npm:3.14.1"
@@ -12785,6 +12938,15 @@ __metadata:
   dependencies:
     is-typedarray: ^1.0.0
   checksum: 99c11aaa8f45189fcfba6b8a4825fd684a321caa9bd7a76a27cf0c7732c174d198b99f449c52c3818107430b5f41c0ccbbfb75cb2ee3ca4a9451710986d61a60
+  languageName: node
+  linkType: hard
+
+"types-ramda@npm:^0.29.1":
+  version: 0.29.1
+  resolution: "types-ramda@npm:0.29.1"
+  dependencies:
+    ts-toolbelt: ^9.6.0
+  checksum: b67391954cbd75528a09ff8433c11c32ae3f3af28e2b0c0fb05807208cdb6d221aa860732d28174adcd3038ec2ad6c3d9c26bbc1b5379dca555de6e9504668e4
   languageName: node
   linkType: hard
 
