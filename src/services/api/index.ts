@@ -53,14 +53,16 @@ export const useUserMutation = ({
     {
       onMutate: () => {
         storage.set("isAppLoading", true);
+        console.log("loading.....");
       },
       onSuccess: () => {
         if (onSuccessActions) {
           onSuccessActions();
         }
       },
-      onSettled: () => {
+      onSettled: (data) => {
         storage.set("isAppLoading", false);
+        console.log("data loaded lol");
       },
       onError: (error) => {
         console.log(error);

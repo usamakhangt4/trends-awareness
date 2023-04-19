@@ -10,6 +10,7 @@ import {
 } from "@ionic/react";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {useTweetsScraping} from "../../services/api/scrape";
+import * as R from "ramda";
 
 interface Inputs {
   since: string;
@@ -37,8 +38,6 @@ const TrendsForm = () => {
   const {scrapeTweets} = useTweetsScraping();
 
   const onSubmit: SubmitHandler<Inputs> = async (data: any) => {
-    console.log(data);
-
     // Convert dates to the desired format
     const formattedData = {
       ...data,
@@ -47,7 +46,7 @@ const TrendsForm = () => {
     };
     scrapeTweets(formattedData, {
       onSuccess: (data) => {
-        console.log(data);
+        console.log(R.pathOr([], ["data"], data));
       },
     });
   };

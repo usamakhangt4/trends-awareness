@@ -12,49 +12,32 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
-import {Storage} from "@ionic/storage";
 import TrendsForm from "../components/TrendsForm/trends-form";
 import "./Home.css";
+import {Header} from "../components/Header/Header";
+import {storage} from "../storage";
+import {useState} from "react";
+import {Results} from "../components/Results/Results";
 
 interface HomeTypes {
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const Home = (props: HomeTypes) => {
   const {setIsLoggedIn} = props;
-  const storage = new Storage();
+
+  const [isTrendsForm, setIsTrendsForm] = useState(true);
 
   const handleLogout = () => {
-    storage.create();
     storage.set("isLoggedIn", false);
     setIsLoggedIn(false);
   };
-  console.log("home page");
+  const handleFormSubmit = () => {};
 
   return (
     <IonPage>
-      <IonHeader class="ion-flex">
-        <IonToolbar>
-          <IonGrid>
-            <IonRow class="ion-align-items-center">
-              <IonCol>
-                <IonTitle>Trend Awareness</IonTitle>
-              </IonCol>
-              <IonCol size="auto">
-                <IonButton color="danger" fill="clear" onClick={handleLogout}>
-                  Logout
-                </IonButton>
-              </IonCol>
-            </IonRow>
-          </IonGrid>
-        </IonToolbar>
-      </IonHeader>
+      <Header handleLogout={handleLogout} />
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Blank</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <TrendsForm />
+        {isTrendsForm ? <TrendsForm /> : <Results />}
       </IonContent>
     </IonPage>
   );
