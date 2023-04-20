@@ -28,7 +28,12 @@ const formatDate = (dateString: string) => {
   return `${year}-${month}-${day}`;
 };
 
-const TrendsForm = () => {
+interface TrendsFormType {
+  setTrendsData: React.Dispatch<React.SetStateAction<never[]>>;
+}
+
+const TrendsForm = (props: TrendsFormType) => {
+  const {setTrendsData} = props;
   const {
     register,
     handleSubmit,
@@ -46,7 +51,7 @@ const TrendsForm = () => {
     };
     scrapeTweets(formattedData, {
       onSuccess: (data) => {
-        console.log(R.pathOr([], ["data"], data));
+        setTrendsData(R.pathOr([], ["data"], data));
       },
     });
   };

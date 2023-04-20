@@ -1,0 +1,51 @@
+.images-container {
+  margin-top: 1rem;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.likes-container,
+.retweets-container {
+  display: flex;
+  align-items: center;
+}
+
+.likes-container .ion-icon,
+.retweets-container .ion-icon {
+  margin-right: 0.25rem;
+  font-size: 1.25rem;
+}
+
+.likes-container .ion-icon {
+  color: #e0245e;
+}
+
+.retweets-container .ion-icon {
+  color: #17bf63;
+}
+
+.sentiment-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  border-radius: 9999px;
+  font-weight: bold;
+  padding: 0.25rem 0.5rem;
+}
+
+.neutral {
+  background-color: #b0b6ba;
+}
+
+.positive {
+  background-color: #2ecc71;
+}
+
+.negative {
+  background-color: #e74c3c;
+}

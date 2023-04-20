@@ -16,8 +16,9 @@ import TrendsForm from "../components/TrendsForm/trends-form";
 import "./Home.css";
 import {Header} from "../components/Header/Header";
 import {storage} from "../storage";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Results} from "../components/Results/Results";
+import {isNothing} from "../utils";
 
 interface HomeTypes {
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
@@ -25,19 +26,27 @@ interface HomeTypes {
 const Home = (props: HomeTypes) => {
   const {setIsLoggedIn} = props;
 
-  const [isTrendsForm, setIsTrendsForm] = useState(true);
+  const [trendsData, setTrendsData] = useState([]);
+  const [isTrendsForm, setIsTrendsForm] = useState(isNothing(trendsData));
 
   const handleLogout = () => {
     storage.set("isLoggedIn", false);
     setIsLoggedIn(false);
   };
-  const handleFormSubmit = () => {};
+
+  useEffect(() => {
+    setIsTrendsForm(isNothing(trendsData));
+  }, [trendsData]);
 
   return (
     <IonPage>
       <Header handleLogout={handleLogout} />
       <IonContent fullscreen>
-        {isTrendsForm ? <TrendsForm /> : <Results />}
+        {isTrendsForm ? (
+          <TrendsForm setTrendsData={setTrendsData} />
+        ) : (
+          <Results trendsData={trendsData} />
+        )}
       </IonContent>
     </IonPage>
   );
