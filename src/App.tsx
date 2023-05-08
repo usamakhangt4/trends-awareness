@@ -1,15 +1,4 @@
-import {Redirect, Route} from "react-router-dom";
-import {
-  IonApp,
-  IonCheckbox,
-  IonItem,
-  IonLabel,
-  IonPage,
-  IonRouterOutlet,
-  setupIonicReact,
-} from "@ionic/react";
-import {IonReactRouter} from "@ionic/react-router";
-import Home from "./pages/Home";
+import {IonApp, IonPage, setupIonicReact} from "@ionic/react";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -29,27 +18,14 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
-import {useEffect, useState} from "react";
+import {useEffect, useReducer, useState} from "react";
 import AuthenticatedApp from "./authenticated-app";
 import UnAuthenticatedApp from "./un-authenticated-app";
-import {storage} from "./storage";
 
 setupIonicReact();
 
 const App: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isAppLoading, setIsAppLoading] = useState(false);
-
-  useEffect(() => {
-    storage.get("isLoggedIn").then((value) => {
-      setIsLoggedIn(!!value);
-    });
-    storage.get("isAppLoading").then((value) => {
-      setIsAppLoading(!!value);
-    });
-  }, [storage]);
-  console.log({isLoggedIn});
-  console.log({isAppLoading});
 
   return (
     <IonApp>

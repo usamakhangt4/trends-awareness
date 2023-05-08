@@ -1,7 +1,6 @@
 import axios from "axios";
 import {useMutation} from "react-query";
 import * as R from "ramda";
-import {storage} from "../../storage";
 
 export interface AxiosCallParamsType {
   headers?: any;
@@ -21,17 +20,7 @@ export const axiosCall = ({method = "get", url, data}: AxiosCallParamsType) => {
   });
 };
 
-export const useUserMutation = ({
-  payload,
-  accessToken,
-  authTokenRequired,
-  onSuccessActions,
-}: {
-  payload: any;
-  accessToken?: string;
-  authTokenRequired?: boolean;
-  onSuccessActions?: Function;
-}) => {
+export const useUserMutation = ({payload}: {payload: any}) => {
   return useMutation(
     // data is now an object instead of formData only.
     // new keys that can be added: url and isDynamicUrl.
@@ -45,25 +34,13 @@ export const useUserMutation = ({
         ...payload,
         url: isDynamicUrl ? data.url : payload.url,
         data: isDynamicUrl ? data.data : data,
-        accessToken,
-        authTokenRequired,
       });
     },
 
     {
-      onMutate: () => {
-        storage.set("isAppLoading", true);
-        console.log("loading.....");
-      },
-      onSuccess: () => {
-        if (onSuccessActions) {
-          onSuccessActions();
-        }
-      },
-      onSettled: (data) => {
-        storage.set("isAppLoading", false);
-        console.log("data loaded lol");
-      },
+      onMutate: () => {},
+      onSuccess: () => {},
+      onSettled: () => {},
       onError: (error) => {
         console.log(error);
       },

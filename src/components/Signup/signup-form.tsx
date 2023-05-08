@@ -11,7 +11,6 @@ import {SubmitHandler, useForm} from "react-hook-form";
 import {eye, eyeOff} from "ionicons/icons";
 import {useState} from "react";
 import {useRegistration} from "../../services/api/auth";
-import {storage} from "../../storage";
 
 interface Inputs {
   firstName: string;
@@ -42,7 +41,6 @@ const SignupForm = (props: SignupFormTypes) => {
   const onSubmit: SubmitHandler<Inputs> = async (data: Inputs) => {
     accountRegistration(data, {
       onSuccess: async () => {
-        storage.set("isLoggedIn", true);
         setIsLoggedIn(true);
       },
     });

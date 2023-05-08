@@ -7,12 +7,12 @@ export const useTweetsScraping = () => {
     method: "post",
   };
 
-  const {mutate, ...rest} = useUserMutation({
+  const {mutate, isLoading} = useUserMutation({
     payload,
   });
 
   return {
     scrapeTweets: mutate,
-    ...rest,
+    isLoading,
   };
 };

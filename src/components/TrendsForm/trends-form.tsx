@@ -11,6 +11,7 @@ import {
 import {SubmitHandler, useForm} from "react-hook-form";
 import {useTweetsScraping} from "../../services/api/scrape";
 import * as R from "ramda";
+import {useEffect} from "react";
 
 interface Inputs {
   since: string;
@@ -30,19 +31,27 @@ const formatDate = (dateString: string) => {
 
 interface TrendsFormType {
   setTrendsData: React.Dispatch<React.SetStateAction<never[]>>;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsTrendsForm: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const TrendsForm = (props: TrendsFormType) => {
-  const {setTrendsData} = props;
+  const {setTrendsData, setIsLoading, setIsTrendsForm} = props;
+
   const {
     register,
     handleSubmit,
     formState: {errors},
   } = useForm<Inputs>();
 
-  const {scrapeTweets} = useTweetsScraping();
+  const {scrapeTweets, isLoading} = useTweetsScraping();
+
+  useEffect(() => {
+    setIsLoading(isLoading);
+  }, [isLoading]);
 
   const onSubmit: SubmitHandler<Inputs> = async (data: any) => {
+    setIsLoading(isLoading);
     // Convert dates to the desired format
     const formattedData = {
       ...data,
@@ -50,10 +59,23 @@ const TrendsForm = (props: TrendsFormType) => {
       until: formatDate(data.until),
     };
     scrapeTweets(formattedData, {
-      onSuccess: (data) => {
-        setTrendsData(R.pathOr([], ["data"], data));
+      onSuccess: (data: any) => {
+        console.log("on success");
+        console.log({data});
+
+        setTrendsData(data);
+        setIsLoading(false);
+      },
+      onSettled: () => {
+        setIsTrendsForm(false);
+        setIsLoading(false);
+      },
+      onError: (err) => {
+        console.log(err);
       },
     });
+    // setIsTrendsForm(true);
+    // setIsLoading(false);
   };
 
   return (

@@ -1,6 +1,5 @@
 import {
   IonButton,
-  IonContent,
   IonIcon,
   IonInput,
   IonItem,
@@ -9,9 +8,8 @@ import {
 } from "@ionic/react";
 import {eye, eyeOff} from "ionicons/icons";
 import {SubmitHandler, useForm} from "react-hook-form";
-import {useState, useEffect} from "react";
+import {useState} from "react";
 import {useLogin} from "../../services/api/auth";
-import {storage} from "../../storage";
 
 interface Inputs {
   email: string;
@@ -35,11 +33,8 @@ const LoginForm = (props: LoginFormTypes) => {
 
   const onSubmit: SubmitHandler<Inputs> = async (data: any) => {
     accountLogin(data, {
-      onSuccess: async () => {
-        storage.set("isLoggedIn", true);
-        console.log("reached");
+      onSuccess: () => {
         setIsLoggedIn(true);
-        console.log(storage.get("isLoggedIn"));
       },
     });
   };

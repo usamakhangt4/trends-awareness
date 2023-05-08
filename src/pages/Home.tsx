@@ -1,24 +1,11 @@
-import {
-  IonButton,
-  IonCheckbox,
-  IonCol,
-  IonContent,
-  IonGrid,
-  IonHeader,
-  IonItem,
-  IonLabel,
-  IonPage,
-  IonRow,
-  IonTitle,
-  IonToolbar,
-} from "@ionic/react";
+import {IonContent, IonPage} from "@ionic/react";
 import TrendsForm from "../components/TrendsForm/trends-form";
 import "./Home.css";
 import {Header} from "../components/Header/Header";
-import {storage} from "../storage";
 import {useEffect, useState} from "react";
 import {Results} from "../components/Results/Results";
 import {isNothing} from "../utils";
+import {Loader} from "../components/Loader/Loader";
 
 interface HomeTypes {
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
@@ -28,22 +15,30 @@ const Home = (props: HomeTypes) => {
 
   const [trendsData, setTrendsData] = useState([]);
   const [isTrendsForm, setIsTrendsForm] = useState(isNothing(trendsData));
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    // setIsLoading(isNothing(trendsData));
+    setIsTrendsForm(isNothing(trendsData));
+    console.log("useEffect", trendsData, isLoading, isTrendsForm);
+  }, [trendsData]);
 
   const handleLogout = () => {
-    storage.set("isLoggedIn", false);
     setIsLoggedIn(false);
   };
 
-  useEffect(() => {
-    setIsTrendsForm(isNothing(trendsData));
-  }, [trendsData]);
-
+  console.log("useEffect k bahar", trendsData, isLoading, isTrendsForm);
   return (
     <IonPage>
       <Header handleLogout={handleLogout} />
       <IonContent fullscreen>
+        {/* {isLoading && <Loader />} */}
         {isTrendsForm ? (
-          <TrendsForm setTrendsData={setTrendsData} />
+          <TrendsForm
+            setTrendsData={setTrendsData}
+            setIsLoading={setIsLoading}
+            setIsTrendsForm={setIsTrendsForm}
+          />
         ) : (
           <Results trendsData={trendsData} />
         )}

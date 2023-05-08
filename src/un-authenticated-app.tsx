@@ -1,13 +1,10 @@
 import {
-  IonBackButton,
   IonButton,
   IonCard,
   IonCardContent,
-  IonCardHeader,
   IonCardSubtitle,
   IonCardTitle,
   IonContent,
-  IonPage,
   IonText,
 } from "@ionic/react";
 import {useState} from "react";
