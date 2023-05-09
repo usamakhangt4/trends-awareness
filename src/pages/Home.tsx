@@ -20,19 +20,22 @@ const Home = (props: HomeTypes) => {
   useEffect(() => {
     // setIsLoading(isNothing(trendsData));
     setIsTrendsForm(isNothing(trendsData));
-    console.log("useEffect", trendsData, isLoading, isTrendsForm);
   }, [trendsData]);
 
   const handleLogout = () => {
     setIsLoggedIn(false);
   };
 
-  console.log("useEffect k bahar", trendsData, isLoading, isTrendsForm);
+  const handleGoBack = () => {
+    setIsTrendsForm(true);
+    setTrendsData([]);
+  };
+
   return (
     <IonPage>
       <Header handleLogout={handleLogout} />
       <IonContent fullscreen>
-        {/* {isLoading && <Loader />} */}
+        {/* {isLoading && !isTrendsForm && <Loader />} */}
         {isTrendsForm ? (
           <TrendsForm
             setTrendsData={setTrendsData}
@@ -40,7 +43,7 @@ const Home = (props: HomeTypes) => {
             setIsTrendsForm={setIsTrendsForm}
           />
         ) : (
-          <Results trendsData={trendsData} />
+          <Results trendsData={trendsData} handleGoBack={handleGoBack} />
         )}
       </IonContent>
     </IonPage>

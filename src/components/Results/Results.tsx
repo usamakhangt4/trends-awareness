@@ -6,18 +6,21 @@ import {TweetCard} from "../TweetCard/TweetCard";
 
 interface ResultsType {
   trendsData: never[];
+  handleGoBack: () => void;
 }
 export const Results = (props: ResultsType) => {
-  const {trendsData} = props;
+  const {trendsData, handleGoBack} = props;
 
   const [showTweets, setShowTweets] = useState(false);
   const [showWordCloud, setShowWordCloud] = useState(false);
 
   const data = R.pathOr([], ["data"], trendsData);
-  console.log({data});
 
   return (
     <IonCard class="ion-padding">
+      <span onClick={() => handleGoBack()}>{"< Go Back"}</span>
+      <br />
+      <br />
       <IonCardTitle>Results</IonCardTitle>
       <IonCardContent>
         {data.map((tweet, index) => (

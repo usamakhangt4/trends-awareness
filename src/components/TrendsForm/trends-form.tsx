@@ -12,6 +12,7 @@ import {SubmitHandler, useForm} from "react-hook-form";
 import {useTweetsScraping} from "../../services/api/scrape";
 import * as R from "ramda";
 import {useEffect} from "react";
+import {Loader} from "../Loader/Loader";
 
 interface Inputs {
   since: string;
@@ -60,7 +61,6 @@ const TrendsForm = (props: TrendsFormType) => {
     };
     scrapeTweets(formattedData, {
       onSuccess: (data: any) => {
-        console.log("on success");
         console.log({data});
 
         setTrendsData(data);
@@ -81,49 +81,63 @@ const TrendsForm = (props: TrendsFormType) => {
   return (
     <IonCard class="ion-padding">
       <IonCardTitle>Form</IonCardTitle>
-      <IonCardContent>
-        <IonItem fill="solid">
-          <IonLabel position="stacked">Since</IonLabel>
-          <IonInput
-            type="date"
-            pattern="\d{4}-\d{2}-\d{2}"
-            {...register("since", {required: true})}
-          />
-          {errors.since && <IonText color="danger">Since is required</IonText>}
-        </IonItem>
-        <IonItem fill="solid">
-          <IonLabel position="stacked">until</IonLabel>
-          <IonInput
-            type="date"
-            pattern="\d{4}-\d{2}-\d{2}"
-            {...register("until", {required: true})}
-          />
-          {errors.until && <IonText color="danger">until is required</IonText>}
-        </IonItem>
-        <IonItem fill="solid">
-          <IonLabel position="floating">Words</IonLabel>
-          <IonInput type="text" {...register("words", {required: true})} />
-          {errors.words && <IonText color="danger">Words is required</IonText>}
-        </IonItem>
-        <IonItem fill="solid">
-          <IonLabel position="floating">Limit</IonLabel>
-          <IonInput type="number" {...register("limit", {required: true})} />
-          {errors.limit && <IonText color="danger">Limit is required</IonText>}
-        </IonItem>
-        <IonItem fill="solid">
-          <IonLabel position="floating">Interval</IonLabel>
-          <IonInput type="number" {...register("interval", {required: true})} />
-          {errors.interval && (
-            <IonText color="danger">Interval is required</IonText>
-          )}
-        </IonItem>
-        <IonButton
-          class="ion-margin-top"
-          color={"secondary"}
-          onClick={handleSubmit(onSubmit)}>
-          Submit
-        </IonButton>
-      </IonCardContent>
+      {isLoading && <Loader />}
+      {!isLoading && (
+        <IonCardContent>
+          <IonItem fill="solid">
+            <IonLabel position="stacked">Since</IonLabel>
+            <IonInput
+              type="date"
+              pattern="\d{4}-\d{2}-\d{2}"
+              {...register("since", {required: true})}
+            />
+            {errors.since && (
+              <IonText color="danger">Since is required</IonText>
+            )}
+          </IonItem>
+          <IonItem fill="solid">
+            <IonLabel position="stacked">until</IonLabel>
+            <IonInput
+              type="date"
+              pattern="\d{4}-\d{2}-\d{2}"
+              {...register("until", {required: true})}
+            />
+            {errors.until && (
+              <IonText color="danger">until is required</IonText>
+            )}
+          </IonItem>
+          <IonItem fill="solid">
+            <IonLabel position="floating">Words</IonLabel>
+            <IonInput type="text" {...register("words", {required: true})} />
+            {errors.words && (
+              <IonText color="danger">Words is required</IonText>
+            )}
+          </IonItem>
+          <IonItem fill="solid">
+            <IonLabel position="floating">Limit</IonLabel>
+            <IonInput type="number" {...register("limit", {required: true})} />
+            {errors.limit && (
+              <IonText color="danger">Limit is required</IonText>
+            )}
+          </IonItem>
+          <IonItem fill="solid">
+            <IonLabel position="floating">Interval</IonLabel>
+            <IonInput
+              type="number"
+              {...register("interval", {required: true})}
+            />
+            {errors.interval && (
+              <IonText color="danger">Interval is required</IonText>
+            )}
+          </IonItem>
+          <IonButton
+            class="ion-margin-top"
+            color={"secondary"}
+            onClick={handleSubmit(onSubmit)}>
+            Submit
+          </IonButton>
+        </IonCardContent>
+      )}
     </IonCard>
   );
 };

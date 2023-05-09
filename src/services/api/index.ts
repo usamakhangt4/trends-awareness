@@ -38,9 +38,6 @@ export const useUserMutation = ({payload}: {payload: any}) => {
     },
 
     {
-      onMutate: () => {},
-      onSuccess: () => {},
-      onSettled: () => {},
       onError: (error) => {
         console.log(error);
       },
