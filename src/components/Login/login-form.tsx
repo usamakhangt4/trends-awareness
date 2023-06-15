@@ -45,6 +45,7 @@ const LoginForm = (props: LoginFormTypes) => {
         <IonLabel position="floating">Email</IonLabel>
         <IonInput
           type="email"
+          autocomplete="off"
           {...register("email", {
             required: true,
             pattern: /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
@@ -61,6 +62,7 @@ const LoginForm = (props: LoginFormTypes) => {
         <IonLabel position="floating">Password</IonLabel>
         <IonInput
           type={showPassword ? "text" : "password"}
+          autocomplete="off"
           {...register("password", {
             required: true,
             minLength: 8,

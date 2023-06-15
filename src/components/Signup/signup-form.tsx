@@ -52,14 +52,22 @@ const SignupForm = (props: SignupFormTypes) => {
       <IonList>
         <IonItem>
           <IonLabel position="floating">First Name</IonLabel>
-          <IonInput type="text" {...register("firstName", {required: true})} />
+          <IonInput
+            type="text"
+            {...register("firstName", {required: true})}
+            autocomplete="off"
+          />
           {errors.firstName && (
             <IonText color="danger">First name is required</IonText>
           )}
         </IonItem>
         <IonItem>
           <IonLabel position="floating">Last Name</IonLabel>
-          <IonInput type="text" {...register("lastName", {required: true})} />
+          <IonInput
+            type="text"
+            {...register("lastName", {required: true})}
+            autocomplete="off"
+          />
           {errors.lastName && (
             <IonText color="danger">Last name is required</IonText>
           )}
@@ -72,6 +80,7 @@ const SignupForm = (props: SignupFormTypes) => {
               required: true,
               pattern: /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
             })}
+            autocomplete="off"
           />
           {errors.email?.type === "required" && (
             <IonText color="danger">Email is required</IonText>
@@ -89,6 +98,7 @@ const SignupForm = (props: SignupFormTypes) => {
               minLength: 8,
               pattern: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm,
             })}
+            autocomplete="off"
           />
           <IonIcon
             icon={showPassword ? eyeOff : eye}
@@ -112,6 +122,7 @@ const SignupForm = (props: SignupFormTypes) => {
               validate: (value) =>
                 value === password || "Passwords do not match",
             })}
+            autocomplete="off"
           />
           <IonIcon
             icon={showConfirmPassword ? eyeOff : eye}
